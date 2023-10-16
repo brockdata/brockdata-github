@@ -1,0 +1,15 @@
+# headings
+EAST = 0
+NORTH = 90
+WEST = 180
+SOUTH = 270
+
+START_CARS = 10
+
+# start positions
+STARTX_LEFT = -350
+STARTY_LEFT = -350
+STARTX_RIGHT = 350
+STARTY_RIGHT = 50
+
+PLAYER_START = (0,-380)

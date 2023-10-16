@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ main_title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="top">
+        <div class="title"><h1>{{ main_title }}</h1></div>
+           </div>
+        <div class="content">
+            <div class="card">
+                {% for p in posts: %}
+                    {% if p['id'] == blog_id: %}
+                        <h1>{{p['title']}}</h1>
+                        <h2>Introduction</h2>
+                        <h3>{{p['introduction']}}</h3>
+                        {% for key, value in p.items(): %}
+                            {% if key not in ['title', 'introduction', 'id', 'conclusion']: %}
+                                <h3>{{ key.replace('_', ' ').title() }}</h3>
+                                {% if value is mapping: %}
+                                    {% for k, v in value.items(): %}
+                                        {% if v.__class__.__name__ == 'bool': %}
+                                            <h4>{{ k.replace('_', ' ').title() + '?' }} >> {{ random_yes() }}</h4>
+                                        {%  elif v.__class__.__name__ == 'list': %}
+                                            <h4>{{ k.replace('_', ' ').title() + '?' }}</h4>
+                                            {% for i in v: %}
+                                                {% if i.__class__.__name__ == 'list': %}
+                                                    {% for ii in i: %}
+                                                        <p>- {{ ii }}</p>
+                                                    {% endfor %}
+                                                {% else: %}
+                                                    <p>- {{ i }}</p>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else: %}
+                                            <p>- {{ v }}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% elif value.__class__.__name__ == 'list': %}
+                                    {% for v in value: %}
+                                        <p>- {{ v }}</p>
+                                    {% endfor %}
+                                {% else: %}
+                                    <p>{{ value }}</p>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                        <h2>Conclusion</h2>
+                        <h3>{{ p['conclusion'] }}</h3>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    </div>
+</div>
+</body>
+<footer>
+    <p>{{ footer }}</p>
+</footer>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ main_title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="top">
+        <div class="title"><h1>{{ main_title }}</h1></div>
+    </div>
+    {% for p in posts: %}
+    <div class="content">
+        <div class="card">
+            <h2>{{ p['title'] }}</h2>
+            <p class="text">{{ p['introduction'] }}</p>
+            <a href="{{ url_for('blog', blog_id=p['id']) }}">Read</a>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</div>
+</body>
+<footer>
+    <p>{{ footer }}</p>
+</footer>
+</html>
